@@ -31,7 +31,7 @@ public class BirdChaseState : IState
 
     public void StateUpdate()
     {
-       if (elapsedTime < moveDuration)
+        if (elapsedTime < moveDuration)
         {
             elapsedTime += Time.deltaTime;
 
@@ -52,11 +52,14 @@ public class BirdChaseState : IState
 
             // 计算鸟的当前位置
             Vector3 offset = new Vector3(Mathf.Cos(radian) * currentRadius, currentHeight, Mathf.Sin(radian) * currentRadius);
-            birdActionComponent.transform.position = target.position + offset;
+            birdActionComponent.transform.position = Vector3.Lerp(birdActionComponent.transform.position, target.position + offset, Time.deltaTime);
 
             // 保持鸟的朝向
             birdActionComponent.transform.LookAt(target);
         }
-    }
-    
+        else
+        {
+            birdActionComponent.ChangeState(new BirdDestructState());
+        }
+    }    
 }
