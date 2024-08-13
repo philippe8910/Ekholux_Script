@@ -13,7 +13,7 @@ public class BirdDestructState : IState
         // 傷害計算 與 音效 與 特效
 
         // 鸟的销毁
-        GameObject.Destroy(birdActionComponent.gameObject);
+        BirdObjectManager.Instance.ReleaseBird(birdActionComponent);
     }
 
     public void StateExit()

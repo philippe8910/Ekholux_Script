@@ -17,7 +17,7 @@ public class BirdDetectState : IState
 
     public void StateUpdate()
     {
-        if(Physics.CheckSphere(birdActionComponent.transform.position, birdActionComponent.detectRange, birdActionComponent.playerLayer))
+        if(Physics.CheckSphere(birdActionComponent.transform.position, birdActionComponent.birdParameterComponent.detectRange, birdActionComponent.playerLayer))
         {
             birdActionComponent.ChangeState(new BirdChaseState());
         }
