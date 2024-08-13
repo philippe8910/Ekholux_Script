@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BirdParameterComponent))]
-public class BirdActionComponent : MonoBehaviour
+[RequireComponent(typeof(LumpyParameterComponent))]
+public class LumpyActionComponent : MonoBehaviour
 {
     public Transform target;
     public LayerMask playerLayer;
-    public BirdParameterComponent birdParameterComponent;
+    public LumpyParameterComponent birdParameterComponent;
 
 
     private IState currentState;
@@ -15,9 +15,9 @@ public class BirdActionComponent : MonoBehaviour
     private void OnEnable()
     {
         target = GameObject.FindWithTag("Player").transform;
-        birdParameterComponent = GetComponent<BirdParameterComponent>();
+        birdParameterComponent = GetComponent<LumpyParameterComponent>();
 
-        ChangeState(new BirdDetectState());
+        ChangeState(new LumpyDetectState());
     }
 
     private void Update()

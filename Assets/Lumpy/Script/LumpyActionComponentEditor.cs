@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(BirdActionComponent))]
+[CustomEditor(typeof(LumpyActionComponent))]
 public class BirdActionComponentEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
 
-        BirdActionComponent birdActionComponent = (BirdActionComponent)target;
+        LumpyActionComponent birdActionComponent = (LumpyActionComponent)target;
 
         if (GUILayout.Button("Change State: Detect"))
         {
-            birdActionComponent.ChangeState(new BirdDetectState());
+            birdActionComponent.ChangeState(new LumpyDetectState());
         }
 
         if (GUILayout.Button("Change State: Chase"))
         {
-            birdActionComponent.ChangeState(new BirdChaseState());
+            birdActionComponent.ChangeState(new LumpyChaseState());
         }
 
         if (GUILayout.Button("Change State: Destruct"))
         {
-            birdActionComponent.ChangeState(new BirdDestructState());
+            birdActionComponent.ChangeState(new LumpyDestructState());
         }
     }
 }

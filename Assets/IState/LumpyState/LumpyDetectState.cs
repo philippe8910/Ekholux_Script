@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BirdDetectState : IState
+public class LumpyDetectState : IState
 {
-    BirdActionComponent birdActionComponent;
+    LumpyActionComponent birdActionComponent;
     public void StateEnter(Object @object)
     {
-        birdActionComponent = (BirdActionComponent)@object;
+        birdActionComponent = (LumpyActionComponent)@object;
     }
 
     public void StateExit()
@@ -19,7 +19,7 @@ public class BirdDetectState : IState
     {
         if(Physics.CheckSphere(birdActionComponent.transform.position, birdActionComponent.birdParameterComponent.detectRange, birdActionComponent.playerLayer))
         {
-            birdActionComponent.ChangeState(new BirdChaseState());
+            birdActionComponent.ChangeState(new LumpyChaseState());
         }
     }
 }

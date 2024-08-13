@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(BirdObjectManager))]
+[CustomEditor(typeof(LumpyObjectManager))]
 public class BirdObjectManagerEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
 
-        BirdObjectManager birdObjectManager = (BirdObjectManager)target;
+        LumpyObjectManager birdObjectManager = (LumpyObjectManager)target;
 
         if (GUILayout.Button("Create Bird From Vector Zero"))
         {

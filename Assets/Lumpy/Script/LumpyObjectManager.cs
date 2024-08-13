@@ -4,14 +4,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class BirdObjectManager : SingletonMonoBehaviour<BirdObjectManager>
+public class LumpyObjectManager : SingletonMonoBehaviour<LumpyObjectManager>
 {
-    public BirdActionComponent birdPrefab;
-    public ObjectPool<BirdActionComponent> pool;
+    public LumpyActionComponent birdPrefab;
+    public ObjectPool<LumpyActionComponent> pool;
 
     void Start()
     {
-        pool = new ObjectPool<BirdActionComponent>(() => { return Instantiate(birdPrefab); },
+        pool = new ObjectPool<LumpyActionComponent>(() => { return Instantiate(birdPrefab); },
         bird => { bird.gameObject.SetActive(true); },
         bird => { bird.gameObject.SetActive(false);},
         bird => Destroy(bird.gameObject), false, 10);
@@ -29,7 +29,7 @@ public class BirdObjectManager : SingletonMonoBehaviour<BirdObjectManager>
         bird.transform.position = position;
     }
 
-    public void ReleaseBird(BirdActionComponent bird)
+    public void ReleaseBird(LumpyActionComponent bird)
     {
         pool.Release(bird);
     }

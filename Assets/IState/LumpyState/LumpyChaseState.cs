@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BirdChaseState : IState
+public class LumpyChaseState : IState
 {   
     public Transform target;  // 目标点
     
 
-    private BirdActionComponent birdActionComponent;
-    private BirdParameterComponent birdParameterComponent;
+    private LumpyActionComponent birdActionComponent;
+    private LumpyParameterComponent birdParameterComponent;
 
     public void StateEnter(Object @object)
     {
-        birdActionComponent = (BirdActionComponent)@object;
+        birdActionComponent = (LumpyActionComponent)@object;
         birdParameterComponent = birdActionComponent.birdParameterComponent;
 
         target = birdActionComponent.target;
@@ -54,7 +54,7 @@ public class BirdChaseState : IState
         }
         else
         {
-            birdActionComponent.ChangeState(new BirdDestructState());
+            birdActionComponent.ChangeState(new LumpyDestructState());
         }
     }    
 }

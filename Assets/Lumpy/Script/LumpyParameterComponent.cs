@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BirdParameterComponent : MonoBehaviour
+public class LumpyParameterComponent : MonoBehaviour
 {
     public float startHeight = 10f;  // 初始Y轴高度
     public float endHeight = 0f;  // 最终Y轴高度
