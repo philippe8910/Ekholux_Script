@@ -5,6 +5,7 @@ using UnityEngine;
 public class LumpyChaseState : IState
 {   
     public Transform target;  // 目标点
+    public Vector3 offset;  // 偏移量
     
 
     private LumpyActionComponent birdActionComponent;
@@ -15,8 +16,8 @@ public class LumpyChaseState : IState
         birdActionComponent = (LumpyActionComponent)@object;
         birdParameterComponent = birdActionComponent.birdParameterComponent;
 
+        offset = new Vector3(Random.Range(-birdParameterComponent.detectRange, birdParameterComponent.detectRange), Random.Range(0, birdParameterComponent.detectRange), Random.Range(-birdParameterComponent.detectRange, birdParameterComponent.detectRange));
         target = birdActionComponent.target;
-        birdParameterComponent.elapsedTime = 0;
     }
 
     public void StateExit()
@@ -26,35 +27,14 @@ public class LumpyChaseState : IState
 
     public void StateUpdate()
     {
-        if (birdParameterComponent.elapsedTime < birdParameterComponent.moveDuration)
+        if(Vector3.Distance(birdActionComponent.transform.position, target.position) > birdParameterComponent.nearDistance)
         {
-            birdParameterComponent.elapsedTime += Time.deltaTime;
-
-            
-            float t = birdParameterComponent.elapsedTime / birdParameterComponent.moveDuration;
-
-            
-            float baseHeight = Mathf.Lerp(birdParameterComponent.startHeight, birdParameterComponent.endHeight, t);
-            float currentRadius = Mathf.Lerp(birdParameterComponent.startRadius, birdParameterComponent.endRadius, t);
-
-            
-            float oscillation = Mathf.Sin(birdParameterComponent.elapsedTime * birdParameterComponent.oscillationFrequency) * birdParameterComponent.oscillationAmplitude;
-            float currentHeight = baseHeight + oscillation;
-
-            
-            float angle = birdParameterComponent.rotationSpeed * birdParameterComponent.elapsedTime;
-            float radian = angle * Mathf.Deg2Rad;
-
-            
-            Vector3 offset = new Vector3(Mathf.Cos(radian) * currentRadius, currentHeight, Mathf.Sin(radian) * currentRadius);
-            birdActionComponent.transform.position = Vector3.Lerp(birdActionComponent.transform.position, target.position + offset, Time.deltaTime);
-
-            
-            birdActionComponent.transform.LookAt(target);
+            birdActionComponent.transform.position = Vector3.MoveTowards(birdActionComponent.transform.position, target.position + offset, birdParameterComponent.maxSpeed * Time.deltaTime);
         }
         else
         {
-            birdActionComponent.ChangeState(new LumpyDestructState());
+            birdActionComponent.transform.RotateAround(target.position, Vector3.up, 30 * Time.deltaTime);
+            birdActionComponent.transform.position = Vector3.MoveTowards(birdActionComponent.transform.position, target.position, .3f * Time.deltaTime);
         }
     }    
 }
