@@ -140,7 +140,7 @@ MonoBehaviour:
   endHeight: 0
   startRadius: 10
   endRadius: 2
-  rotationSpeed: 60
+  rotationSpeed: 80
   moveDuration: 20
   oscillationAmplitude: 1
   oscillationFrequency: 2

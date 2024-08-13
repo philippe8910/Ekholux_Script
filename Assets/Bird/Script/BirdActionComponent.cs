@@ -7,17 +7,16 @@ public class BirdActionComponent : MonoBehaviour
 {
     public Transform target;
     public LayerMask playerLayer;
-    private IState currentState;
     public BirdParameterComponent birdParameterComponent;
 
-    private void Start()
-    {
-        target = GameObject.FindWithTag("Player").transform;
-        birdParameterComponent = GetComponent<BirdParameterComponent>();
-    }
+
+    private IState currentState;
 
     private void OnEnable()
     {
+        target = GameObject.FindWithTag("Player").transform;
+        birdParameterComponent = GetComponent<BirdParameterComponent>();
+
         ChangeState(new BirdDetectState());
     }
 
